@@ -29,6 +29,7 @@
  * @requires vm.jvmti
  * @requires vm.continuations
  * @run main/othervm/native
+ *      -Xdump:system+java:events=gpf+abort,request=exclusive
  *      -agentlib:GetThreadStateMountedTest
  *      GetThreadStateMountedTest
  */

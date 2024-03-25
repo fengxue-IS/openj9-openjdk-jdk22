@@ -25,6 +25,8 @@
 #include <jvmti.h>
 #include <jvmti_common.h>
 #include <atomic>
+#include <stdlib.h>
+#include <signal.h>
 
 static jvmtiEnv *jvmti = nullptr;
 static jint error_count = 0;
@@ -115,6 +117,9 @@ static void verify_thread_state(const char *name, JNIEnv* jni,
     LOG("  expected 'strong' state (%x): %s\n", expected_strong, TranslateState(expected_strong));
     LOG("  expected 'weak' state (%x): %s\n", expected_weak, TranslateState(expected_weak));
     error_count++;
+    LOG("Generating Core dump:");
+    abort();
+    raise(SIGSEGV);
   }
 }
 
